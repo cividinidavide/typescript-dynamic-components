@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ComponentFactoryResolver, OnInit, ViewChild, ViewContainerRef } from '@angular/core';
 
-import { createClass } from "./app-visitor.factory";
+import { createClass } from "./app.factory";
 
 @Component({
   selector: 'app-root',
@@ -8,12 +8,19 @@ import { createClass } from "./app-visitor.factory";
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
-  constructor() { }
+  @ViewChild('container', { read: ViewContainerRef, static: true }) container: ViewContainerRef;
+
+  constructor(
+    private componentFactoryResolver: ComponentFactoryResolver,
+  ) { }
 
   ngOnInit(): void {
-    let lCode = 'ITA';
+    let lCode = 'ciao';
     const obj = createClass(lCode);
 
-    console.error(obj);
+    const componentFactory = this.componentFactoryResolver.resolveComponentFactory(obj.component);
+    const componentRef = this.container.createComponent(componentFactory);
+
+    componentRef.instance.obj = obj;
   }
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-deu',
@@ -6,10 +6,10 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./deu.component.scss']
 })
 export class DeuComponent implements OnInit {
+  @Input() obj: Object = {};
 
   constructor() { }
 
   ngOnInit(): void {
   }
-
 }
