@@ -2,6 +2,7 @@ import { Type } from "@angular/core";
 
 import { ItaComponent } from "./ita/ita.component";
 import { DeuComponent } from "./deu/deu.component";
+import { NotFoundComponent } from "./not-found/not-found.component";
 
 abstract class Article {
   id: string;
@@ -35,11 +36,27 @@ export class DEU extends Article {
   }
 }
 
+export class NotFound extends Article {
+  constructor() {
+    super();
+
+    this.id = '0';
+    this.name = 'NOT FOUND';
+    this.component = NotFoundComponent;
+  }
+}
+
 const ArticleType = {
   ITA,
   DEU,
+  NotFound,
 };
 type ArticleMap = typeof ArticleType;
 
-export const createClass = <Key extends keyof ArticleMap>(localizationCode: string) =>
-  new ArticleType[localizationCode] as InstanceType<ArticleMap[Key]>;
+export const createClass = <Key extends keyof ArticleMap>(localizationCode: string) => {
+  try {
+    return new ArticleType[localizationCode] as InstanceType<ArticleMap[Key]>;
+  } catch {
+    return new ArticleType['NotFound'] as InstanceType<ArticleMap[Key]>;
+  }
+}
