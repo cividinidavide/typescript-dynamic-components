@@ -35,11 +35,11 @@ export class DEU extends Article {
   }
 }
 
-const Store = {
+const ArticleType = {
   ITA,
   DEU,
 };
-type ClassMap = typeof Store;
+type ArticleMap = typeof ArticleType;
 
-export const createClass = <Key extends keyof ClassMap>(key: string) =>
-  new Store[key] as InstanceType<ClassMap[Key]>;
+export const createClass = <Key extends keyof ArticleMap>(localizationCode: string) =>
+  new ArticleType[localizationCode] as InstanceType<ArticleMap[Key]>;

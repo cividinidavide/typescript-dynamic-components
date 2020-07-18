@@ -15,7 +15,7 @@ export class AppComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    let lCode = 'ciao';
+    let lCode = 'ITA';
     const obj = createClass(lCode);
 
     const componentFactory = this.componentFactoryResolver.resolveComponentFactory(obj.component);
