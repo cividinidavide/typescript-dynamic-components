@@ -17,7 +17,7 @@ export class ITA extends Article {
     super();
 
     this.id = '1';
-    this.name = 'ita';
+    this.name = 'ITA';
     this.pck = '4';
     this.component = ItaComponent;
   }
@@ -30,7 +30,7 @@ export class DEU extends Article {
     super();
 
     this.id = '1';
-    this.name = 'deu';
+    this.name = 'DEU';
     this.size = '5';
     this.component = DeuComponent;
   }
